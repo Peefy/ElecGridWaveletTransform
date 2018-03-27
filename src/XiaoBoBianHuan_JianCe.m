@@ -63,13 +63,13 @@ v_filter = WT_Filter(v_noise);
 VoltageKindShowPlot(v,v_noise,v_filter,t,'震荡暂态','V'); 
 %将滤波后的电压信号进行小波变换并重构
 %获取小波变换第一层和第二层的近似系数c1，c2，和细节系数d1，d2 
-WT_GetData(v_filter,wname,level,ts_total);
-%比较wname1，wname2，wname3，wname4小波变换方式cd1和cd2的不同(原始信号)
-wname1 = 'db5';wname2 = 'db8';wname3 = 'db24';wname4 = 'db40';
-WT_GetDataCompare(wname1,wname2,wname3,wname4,level,v,ts_total);
-%比较wname1，wname2，wname3，wname4小波变换方式cd1和cd2的不同(原始信号)
-wname1 = 'coif2';wname2 = 'coif3';wname3 = 'coif4';wname4 = 'coif5';
-WT_GetDataCompare(wname1,wname2,wname3,wname4,level,v,ts_total);
+% WT_GetData(v_filter,wname,level,ts_total);
+% %比较wname1，wname2，wname3，wname4小波变换方式cd1和cd2的不同(原始信号)
+% wname1 = 'db5';wname2 = 'db8';wname3 = 'db24';wname4 = 'db40';
+% WT_GetDataCompare(wname1,wname2,wname3,wname4,level,v,ts_total);
+% %比较wname1，wname2，wname3，wname4小波变换方式cd1和cd2的不同(原始信号)
+% wname1 = 'coif2';wname2 = 'coif3';wname3 = 'coif4';wname4 = 'coif5';
+% WT_GetDataCompare(wname1,wname2,wname3,wname4,level,v,ts_total);
 
 %%% 2.含有谐波(稳态干扰)(结论：看出小波变换对稳态干扰无能为力)
 count = 1;               %循环变量
@@ -88,13 +88,13 @@ titleStr = '含有5、15次谐波的电压';
 %小波自适应阈值滤波去噪
 v_filter = WT_Filter(v_noise);    
 %显示加噪前、加噪后、去噪后的电压波形
-VoltageKindShowPlot(v,v_noise,v_filter,t,titleStr,'V'); 
-%不加噪声的小波七尺度变换
-WT_GetD1_D6(v,wname,level,ts_total,[titleStr,'(原始信号);'],isShowVin);   
-%加噪声的小波七尺度变换
-WT_GetD1_D6(v_noise,wname,level,ts_total,[titleStr,'(加噪声);'],isShowVin);   
-%加噪声且滤波后的小波七尺度变换
-WT_GetD1_D6(v_filter,wname,level,ts_total,[titleStr,'(去噪后);'],isShowVin);  
+% VoltageKindShowPlot(v,v_noise,v_filter,t,titleStr,'V'); 
+% %不加噪声的小波七尺度变换
+% WT_GetD1_D6(v,wname,level,ts_total,[titleStr,'(原始信号);'],isShowVin);   
+% %加噪声的小波七尺度变换
+% WT_GetD1_D6(v_noise,wname,level,ts_total,[titleStr,'(加噪声);'],isShowVin);   
+% %加噪声且滤波后的小波七尺度变换
+% WT_GetD1_D6(v_filter,wname,level,ts_total,[titleStr,'(去噪后);'],isShowVin);  
 
 %%% 3.电压短时上升及其小波七尺度变换
 t1 = 0.03;                   %发生电压上升的时间
@@ -123,14 +123,14 @@ end
 titleStr = '电压短时上升';
 %小波自适应阈值滤波去噪
 v_filter = WT_Filter(v_noise);    
-%显示加噪前、加噪后、去噪后的电压波形
-VoltageKindShowPlot(v,v_noise,v_filter,t,titleStr,'V'); 
-%不加噪声的小波七尺度变换
-WT_GetD1_D6(v,wname,level,ts_total,[titleStr,'(原始信号);'],isShowVin,t1,t2);   
-%加噪声的小波七尺度变换
-WT_GetD1_D6(v_noise,wname,level,ts_total,[titleStr,'(加噪声);'],isShowVin,t1,t2);   
-%加噪声且滤波后的小波七尺度变换
-WT_GetD1_D6(v_filter,wname,level,ts_total,[titleStr,'(去噪后);'],isShowVin,t1,t2);  
+% %显示加噪前、加噪后、去噪后的电压波形
+% VoltageKindShowPlot(v,v_noise,v_filter,t,titleStr,'V'); 
+% %不加噪声的小波七尺度变换
+% WT_GetD1_D6(v,wname,level,ts_total,[titleStr,'(原始信号);'],isShowVin,t1,t2);   
+% %加噪声的小波七尺度变换
+% WT_GetD1_D6(v_noise,wname,level,ts_total,[titleStr,'(加噪声);'],isShowVin,t1,t2);   
+% %加噪声且滤波后的小波七尺度变换
+% WT_GetD1_D6(v_filter,wname,level,ts_total,[titleStr,'(去噪后);'],isShowVin,t1,t2);  
 
 %%% 4.电压短时下降及其七尺度小波变换（注意：滤波后识别失败）
 t1 = 0.03;                    %发生电压下降的时间
@@ -160,13 +160,13 @@ titleStr = '电压短时下降';
 %小波自适应阈值滤波去噪
 v_filter = WT_Filter(v_noise);    
 %显示加噪前、加噪后、去噪后的电压波形
-VoltageKindShowPlot(v,v_noise,v_filter,t,titleStr,'V'); 
-%不加噪声的小波七尺度变换
-WT_GetD1_D6(v,wname,level,ts_total,[titleStr,'(原始信号);'],isShowVin,t1,t2);   
-%加噪声的小波七尺度变换
-WT_GetD1_D6(v_noise,wname,level,ts_total,[titleStr,'(加噪声);'],isShowVin,t1,t2);   
-%加噪声且滤波后的小波七尺度变换
-WT_GetD1_D6(v_filter,wname,level,ts_total,[titleStr,'(去噪后);'],isShowVin,t1,t2);  
+% VoltageKindShowPlot(v,v_noise,v_filter,t,titleStr,'V'); 
+% %不加噪声的小波七尺度变换
+% WT_GetD1_D6(v,wname,level,ts_total,[titleStr,'(原始信号);'],isShowVin,t1,t2);   
+% %加噪声的小波七尺度变换
+% WT_GetD1_D6(v_noise,wname,level,ts_total,[titleStr,'(加噪声);'],isShowVin,t1,t2);   
+% %加噪声且滤波后的小波七尺度变换
+% WT_GetD1_D6(v_filter,wname,level,ts_total,[titleStr,'(去噪后);'],isShowVin,t1,t2);  
 
 %%% 5.电压短时间断及其七尺度小波变换
 t1 = 0.05;                    %发生电压间断的时间
@@ -196,13 +196,13 @@ titleStr = '电压短时中断';
 %小波自适应阈值滤波去噪
 v_filter = WT_Filter(v_noise);    
 %显示加噪前、加噪后、去噪后的电压波形
-VoltageKindShowPlot(v,v_noise,v_filter,t,titleStr,'V'); 
-%不加噪声的小波七尺度变换
-WT_GetD1_D6(v,wname,level,ts_total,[titleStr,'(原始信号);'],isShowVin,t1,t2);   
-%加噪声的小波七尺度变换
-WT_GetD1_D6(v_noise,wname,level,ts_total,[titleStr,'(加噪声);'],isShowVin,t1,t2);   
-%加噪声且滤波后的小波七尺度变换
-WT_GetD1_D6(v_filter,wname,level,ts_total,[titleStr,'(去噪后);'],isShowVin,t1,t2);  
+% VoltageKindShowPlot(v,v_noise,v_filter,t,titleStr,'V'); 
+% %不加噪声的小波七尺度变换
+% WT_GetD1_D6(v,wname,level,ts_total,[titleStr,'(原始信号);'],isShowVin,t1,t2);   
+% %加噪声的小波七尺度变换
+% WT_GetD1_D6(v_noise,wname,level,ts_total,[titleStr,'(加噪声);'],isShowVin,t1,t2);   
+% %加噪声且滤波后的小波七尺度变换
+% WT_GetD1_D6(v_filter,wname,level,ts_total,[titleStr,'(去噪后);'],isShowVin,t1,t2);  
 
 %%% 6.相位跳变及其七尺度小波变换
 t1 = 0.05;                        %发生相位跳变的时间
@@ -228,13 +228,13 @@ titleStr = '电压相位跳变';
 %小波自适应阈值滤波去噪
 v_filter = WT_Filter(v_noise);    
 %显示加噪前、加噪后、去噪后的电压波形
-VoltageKindShowPlot(v,v_noise,v_filter,t,titleStr,'V'); 
-%不加噪声的小波七尺度变换
-WT_GetD1_D6(v,wname,level,ts_total,[titleStr,'(原始信号);'],isShowVin,t1);   
-%加噪声的小波七尺度变换
-WT_GetD1_D6(v_noise,wname,level,ts_total,[titleStr,'(加噪声);'],isShowVin,t1);   
-%加噪声且滤波后的小波七尺度变换
-WT_GetD1_D6(v_filter,wname,level,ts_total,[titleStr,'(去噪后);'],isShowVin,t1);  
+% VoltageKindShowPlot(v,v_noise,v_filter,t,titleStr,'V'); 
+% %不加噪声的小波七尺度变换
+% WT_GetD1_D6(v,wname,level,ts_total,[titleStr,'(原始信号);'],isShowVin,t1);   
+% %加噪声的小波七尺度变换
+% WT_GetD1_D6(v_noise,wname,level,ts_total,[titleStr,'(加噪声);'],isShowVin,t1);   
+% %加噪声且滤波后的小波七尺度变换
+% WT_GetD1_D6(v_filter,wname,level,ts_total,[titleStr,'(去噪后);'],isShowVin,t1);  
 
 %%% 7.频率偏移及其七尺度小波变换
 t1 = 0.07;                     %发生频率偏移的时间
@@ -259,13 +259,13 @@ titleStr = '电压频率偏移';
 %小波自适应阈值滤波去噪
 v_filter = WT_Filter(v_noise);    
 %显示加噪前、加噪后、去噪后的电压波形
-VoltageKindShowPlot(v,v_noise,v_filter,t,titleStr,'V'); 
-%不加噪声的小波七尺度变换
-WT_GetD1_D6(v,wname,level,ts_total,[titleStr,'(原始信号);'],isShowVin,t1);   
-%加噪声的小波七尺度变换
-WT_GetD1_D6(v_noise,wname,level,ts_total,[titleStr,'(加噪声);'],isShowVin,t1);   
-%加噪声且滤波后的小波七尺度变换
-WT_GetD1_D6(v_filter,wname,level,ts_total,[titleStr,'(去噪后);'],isShowVin,t1);  
+% VoltageKindShowPlot(v,v_noise,v_filter,t,titleStr,'V'); 
+% %不加噪声的小波七尺度变换
+% WT_GetD1_D6(v,wname,level,ts_total,[titleStr,'(原始信号);'],isShowVin,t1);   
+% %加噪声的小波七尺度变换
+% WT_GetD1_D6(v_noise,wname,level,ts_total,[titleStr,'(加噪声);'],isShowVin,t1);   
+% %加噪声且滤波后的小波七尺度变换
+% WT_GetD1_D6(v_filter,wname,level,ts_total,[titleStr,'(去噪后);'],isShowVin,t1);  
 
 %%% 8.脉冲暂态及其七尺度小波变换
 t1 = 0.10;           %发生脉冲暂态的时间
